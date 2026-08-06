@@ -1,0 +1,50 @@
+{
+  "planHash": "546c870a95c0db37052c9ccf49b666321343a892466ee159a9e7ddc2e458545a",
+  "phase": "postupgrade",
+  "recordedAtUtc": "2026-08-06T05:37:44.1174146Z",
+  "retryCount": 2,
+  "resetBaseline": false,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 3426,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "tsc-no-emit",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "",
+        "durationMs": 2893
+      },
+      {
+        "name": "build-succeeds",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E official-portfolio@0.1.0 build\r\n\u003E next build\r\n\r\n\u25B2 Next.js 16.3.0 (Turbopack)\r\n\u2713 Running next.config.ts took 40ms\r\n\r\n  Creating an optimized production build ...\r\n\u2713 Compiled successfully in 1922ms\r\n  Running TypeScript ...\r\n  Finished TypeScript in 734ms ...\r\n  Collecting page data using 6 workers ...\r\n  Generating static pages using 6 workers (0/5) ...\r\n  Generating static pages using 6 workers (1/5) \r\n  Generating static pages using 6 workers (2/5) \r\n  Generating static pages using 6 workers (3/5) \r\n\u2713 Generating static pages using 6 workers (5/5) in 1743ms\r\n  Finalizing page optimization ...\r\n\r\nRoute (app)\r\n\u250C \u25CB /\r\n\u251C \u25CB /_not-found\r\n\u2514 \u0192 /api/chat\r\n\r\n\r\n\u25CB  (Static)   prerendered as static content\r\n\u0192  (Dynamic)  server-rendered on demand\r\n\r\n",
+        "durationMs": 9687
+      },
+      {
+        "name": "dev-server-serves-home",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!DOCTYPE html\u003E\u003Chtml lang=\u0022en\u0022 class=\u0022plus_jakarta_sans_2dab1299-module__V3W3qq__variable jetbrains_mono_e60c48ab-module__NosrTa__variable scroll-smooth dark\u0022\u003E\u003Chead\u003E\u003Cmeta charSet=\u0022utf-8\u0022/\u003E\u003Cmeta name=\u0022viewport\u0022 content=\u0022width=device-width, initial-scale=1\u0022/\u003E\u003Clink rel=\u0022preload\u0022 as=\u0022image\u0022 imageSrcSet=\u0022/_next/image?url=%2Fprofile.jpg\u0026amp;w=640\u0026amp;q=75 640w, /_next/image?url=%2Fprofile.jpg\u0026amp;w=750\u0026amp;q=75 750w, /_next/image?url=%2Fprofile.jpg\u0026amp;w=828\u0026amp;q=75 828w, /_next/image?url=%2Fprofile.jpg\u0026amp;w=1080\u0026amp;q=75 1080w, /_next/image?url=%2Fprofile.jpg\u0026amp;w=1200\u0026amp;q=75 1200w, /_next/image?url=%2Fprofile.jpg\u0026amp;w=1920\u0026amp;q=75 1920w, /_next/image?url=%2Fprofile.jpg\u0026amp;w=2048\u0026amp;q=75 2048w, /_next/image?url=%2Fprofile.jpg\u0026amp;w=3840\u0026amp;q=75 3840w\u0022 imageSizes=\u0022(max-width: 768px) 100vw, 500px\u0022/\u003E\u003Clink rel=\u0022stylesheet\u0022 href=\u0022/_next/static/chunks/%5Broot-of-the-server%5D__1478bb0._.css\u0022 data-precedence=\u0022next_static/chunks/[root-of-the-server]__1478bb0._.css\u0022/\u003E\u003Clink rel=\u0022preload\u0022 as=\u0022script\u0022 fetchPriority=\u0022low\u0022 href=\u0022/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1di75ot._.js\u0022/\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jm.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_client_0_90u2t._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_1e8vcs8._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqw._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/_1anvha4._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/turbopack-_08bm286._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/_219uq1s._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_20wefz_._.js\u0022 async=\u0022\u0022 crossorigin=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/src_0yzh_-f._.js\u0022 async=\u0022\u0022 crossorigin=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_1rznjp2._.js\u0022 async=\u0022\u0022 crossorigin=\u0022\u0022\u003E\u003C/script\u003E\u003Ctitle\u003ENithish \u2014 AI \u0026amp; Machine Learning Engineer Portfolio\u003C/title\u003E\u003Cmeta name=\u0022description\u0022 content=\u0022Personal portfolio and engineering identity of Nithish, an AI/ML Engineer specializing in Large Language Models, RAG Architectures, Fine-Tuning, and High-Throughput Inference Infrastructure.\u0022/\u003E\u003Cmeta name=\u0022author\u0022 content=\u0022Nithish\u0022/\u003E\u003Cmeta name=\u0022keywords\u0022 content=\u0022AI Engineer,Machine Learning Engineer,LLM Architecture,RAG,PyTorch,vLLM,Qdrant,FastAPI,Next.js Portfolio\u0022/\u003E\u003Cmeta property=\u0022og:title\u0022 content=\u0022Nithish \u2014 AI \u0026amp; Machine Learning Engineer\u0022/\u003E\u003Cmeta property=\u0022og:description\u0022 content=\u0022Designing Scalable AI Architecture, Fine-Tuning LLMs \u0026amp; Building High-Performance Inference Systems.\u0022/\u003E\u003Cmeta property=\u0022og:locale\u0022 content=\u0022en_US\u0022/\u003E\u003Cmeta property=\u0022og:type\u0022 content=\u0022website\u0022/\u003E\u003Cmeta name=\u0022twitter:card\u0022 content=\u0022summary\u0022/\u003E\u003Cmeta name=\u0022twitter:title\u0022 content=\u0022Nithish \u2014 AI \u0026amp; Machine Learning Engineer\u0022/\u003E\u003Cmeta name=\u0022twitter:description\u0022 content=\u0022Designing Scalable AI Architecture, Fine-Tuning LLMs \u0026amp; Building High-Performance Inference Systems.\u0022/\u003E\u003Clink rel=\u0022icon\u0022 href=\u0022/favicon.ico?favicon.2vob68tjqpejf.ico\u0022 sizes=\u0022256x256\u0022 type=\u0022image/x-icon\u0022/\u003E\u003Cmeta name=\u0022next-size-adjust\u0022 content=\u0022\u0022/\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_build_polyfills_polyfill-nomodule.js\u0022 noModule=\u0022\u0022\u003E\u003C/script\u003E\u003C/head\u003E\u003Cbody class=\u0022min-h-screen bg-[#09090b] text-neutral-100 antialiased font-sans\u0022\u003E\u003Cdiv hidden=\u0022\u0022\u003E\u003C!--$--\u003E\u003C!--/$--\u003E\u003C/div\u003E\u003Cmain class=\u0022min-h-screen bg-[#09090b] text-neutral-100 flex flex-col selection:bg-yellow-400/30 selection:text-yellow-400\u0022\u003E\u003Cheader class=\u0022fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5 bg-transparent\u0022\u003E\u003Cdiv class=\u0022max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center j\n\u2026[truncated]",
+        "durationMs": 232
+      }
+    ]
+  }
+}
