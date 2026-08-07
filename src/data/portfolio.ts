@@ -68,7 +68,6 @@ export const PORTFOLIO_DATA = {
     resumeUrl: "/Nithish_SB_AI_Engineer_Resume.pdf",
     stats: [
       { label: "AI/ML Projects Built", value: "4+" },
-      { label: "Hallucination Reduction", value: "~80%" },
       { label: "Best RL Model", value: "Double DQN" },
       { label: "Internships Completed", value: "4" },
     ],
