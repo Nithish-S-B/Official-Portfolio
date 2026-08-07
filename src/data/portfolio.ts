@@ -61,7 +61,7 @@ export const PORTFOLIO_DATA = {
       "Designing Scalable AI Architecture, Building LLM Systems & Exploring Multi-Agent Workflows",
     bio: "B.Tech AI & ML student (2022–2026) specializing in Large Language Models, Retrieval-Augmented Generation, Computer Vision, and Reinforcement Learning. Passionate about building production-grade AI systems at the intersection of deep learning research and real-world engineering.",
     status: "Open to AI Engineer & ML Roles",
-    location: "India / Remote",
+    location: "Chennai / Remote",
     email: "nithish.sb.work@gmail.com",
     github: "https://github.com/Nithish-S-B",
     linkedin: "https://www.linkedin.com/in/nithish-s-b-/",
