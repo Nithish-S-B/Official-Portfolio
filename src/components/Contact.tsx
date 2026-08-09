@@ -1,16 +1,23 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { PORTFOLIO_DATA } from '@/data/portfolio';
-import { Mail, FileText, Copy, Check, Send, Sparkles } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from '@/components/icons';
-import { motion } from 'framer-motion';
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import { PORTFOLIO_DATA } from "@/data/portfolio";
+import { Check, Copy, FileText, Mail, Send, Sparkles } from "lucide-react";
+import React, { useState } from "react";
 
 export const Contact: React.FC = () => {
   const { personal } = PORTFOLIO_DATA;
   const [copied, setCopied] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personal.email);
@@ -18,22 +25,53 @@ export const Contact: React.FC = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.email || !formData.message) return;
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 4000);
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setIsSubmitting(true);
+    setFeedbackMessage(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result?.error || "Unable to send message.");
+      }
+
+      setFeedbackMessage({
+        type: "success",
+        text: "Message sent! I will respond shortly.",
+      });
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      setFeedbackMessage({
+        type: "error",
+        text:
+          error instanceof Error
+            ? error.message
+            : "Unable to send message. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#09090b] relative border-t border-neutral-900">
+    <section
+      id="contact"
+      className="py-24 bg-[#09090b] relative border-t border-neutral-900"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
           {/* Left Column: Direct Links & Info */}
           <div className="lg:col-span-6 flex flex-col items-start">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs font-mono text-yellow-400 mb-4">
@@ -46,7 +84,9 @@ export const Contact: React.FC = () => {
             </h2>
 
             <p className="text-sm sm:text-base text-neutral-400 leading-relaxed mb-8 max-w-lg">
-              Whether you are hiring for an **AI Engineer / ML Engineer** role, looking to collaborate on high-performance LLM infrastructure, or exploring technical partnerships—my inbox is always open.
+              Whether you are hiring for an **AI Engineer / ML Engineer** role,
+              looking to collaborate on high-performance LLM infrastructure, or
+              exploring technical partnerships—my inbox is always open.
             </p>
 
             {/* Email Copy Card */}
@@ -56,8 +96,12 @@ export const Contact: React.FC = () => {
                   <Mail className="w-5 h-5" />
                 </div>
                 <div className="truncate">
-                  <span className="block text-[11px] font-mono text-neutral-400">Direct Email</span>
-                  <span className="text-sm font-bold font-mono text-white truncate">{personal.email}</span>
+                  <span className="block text-[11px] font-mono text-neutral-400">
+                    Direct Email
+                  </span>
+                  <span className="text-sm font-bold font-mono text-white truncate">
+                    {personal.email}
+                  </span>
                 </div>
               </div>
 
@@ -114,48 +158,76 @@ export const Contact: React.FC = () => {
           {/* Right Column: Contact Message Form */}
           <div className="lg:col-span-6">
             <div className="glass-panel p-8 sm:p-10 rounded-2xl border border-neutral-800/90 shadow-2xl relative">
-              <h3 className="text-xl font-bold text-white mb-2">Send a Message</h3>
-              <p className="text-xs text-neutral-400 mb-6 font-mono">Fast responses guaranteed within 24 hours.</p>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Send a Message
+              </h3>
+              <p className="text-xs text-neutral-400 mb-6 font-mono">
+                Fast responses guaranteed within 24 hours.
+              </p>
 
-              {formSubmitted ? (
-                <div className="p-6 rounded-xl bg-yellow-400/10 border border-yellow-400/40 text-center space-y-2">
+              {feedbackMessage ? (
+                <div
+                  className={`p-6 rounded-xl border text-center space-y-2 ${
+                    feedbackMessage.type === "success"
+                      ? "bg-yellow-400/10 border-yellow-400/40"
+                      : "bg-red-500/10 border-red-500/40"
+                  }`}
+                >
                   <Sparkles className="w-8 h-8 text-yellow-400 mx-auto animate-bounce" />
-                  <h4 className="text-sm font-bold text-white">Message Received!</h4>
-                  <p className="text-xs text-neutral-300">Thank you for reaching out. Nithish will respond shortly.</p>
+                  <h4 className="text-sm font-bold text-white">
+                    {feedbackMessage.type === "success"
+                      ? "Message Received!"
+                      : "Submission Failed"}
+                  </h4>
+                  <p className="text-xs text-neutral-300">
+                    {feedbackMessage.text}
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-mono text-neutral-400 mb-1">Your Name</label>
+                    <label className="block text-xs font-mono text-neutral-400 mb-1">
+                      Your Name
+                    </label>
                     <input
                       type="text"
                       required
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       placeholder="e.g. Alex Morgan"
                       className="w-full bg-neutral-950 border border-neutral-800 focus:border-yellow-400 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-neutral-400 mb-1">Email Address</label>
+                    <label className="block text-xs font-mono text-neutral-400 mb-1">
+                      Email Address
+                    </label>
                     <input
                       type="email"
                       required
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       placeholder="alex@company.com"
                       className="w-full bg-neutral-950 border border-neutral-800 focus:border-yellow-400 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-neutral-400 mb-1">Message / Opportunity Details</label>
+                    <label className="block text-xs font-mono text-neutral-400 mb-1">
+                      Message / Opportunity Details
+                    </label>
                     <textarea
                       rows={4}
                       required
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       placeholder="Briefly describe your role, project, or inquiry..."
                       className="w-full bg-neutral-950 border border-neutral-800 focus:border-yellow-400 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-all"
                     />
@@ -163,18 +235,17 @@ export const Contact: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full py-3 px-6 text-xs font-semibold rounded-xl bg-yellow-400 text-black hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95"
+                    disabled={isSubmitting}
+                    className="w-full py-3 px-6 text-xs font-semibold rounded-xl bg-yellow-400 text-black hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    <span>Send Inquiry</span>
+                    <span>{isSubmitting ? "Sending..." : "Send Inquiry"}</span>
                     <Send className="w-3.5 h-3.5" />
                   </button>
                 </form>
               )}
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );
