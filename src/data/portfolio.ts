@@ -133,7 +133,7 @@ export const PORTFOLIO_DATA = {
       description:
         "A clinical decision support system using Llama 3, Ollama, FAISS, and Retrieval-Augmented Generation (RAG) to provide evidence-grounded medical responses from curated medical PDFs.",
       category: "GenAI & LLMs",
-      thumbnail: "/projects/ai-doctor.webp",
+      thumbnail: "/AI%20Doctor%20Copilot.png",
       tags: ["Python", "Llama 3", "Ollama", "FAISS", "RAG", "all-MiniLM-L6-v2"],
       metrics: [
         { label: "Hallucination Reduction", value: "~80%" },
@@ -179,7 +179,7 @@ chain = RetrievalQA.from_chain_type(
       description:
         "A comparative RL study using Q-Learning, Deep Q-Network (DQN), and Double DQN for adaptive traffic signal optimization, simulated in SUMO with a Python fallback environment.",
       category: "Reinforcement Learning",
-      thumbnail: "/projects/rl-traffic.webp",
+      thumbnail: "/Adaptive%20Traffice%20Control.png",
       tags: [
         "Python",
         "PyTorch",
@@ -222,7 +222,7 @@ chain = RetrievalQA.from_chain_type(
       description:
         "An automated brain tumor segmentation system using a U-Net based CNN architecture, evaluated using Dice Coefficient and IoU metrics on multi-modal MRI scans.",
       category: "Computer Vision",
-      thumbnail: "/projects/brain-tumor.webp",
+      thumbnail: "/Brain%20Tumor%20Segmentation.png",
       tags: [
         "Python",
         "PyTorch",
@@ -263,7 +263,7 @@ chain = RetrievalQA.from_chain_type(
       description:
         "A deep learning-based leukemia detection system using Convolutional Neural Networks with VGG19 architecture, trained on microscopic blood smear images with data augmentation.",
       category: "Computer Vision",
-      thumbnail: "/projects/leukemia.webp",
+      thumbnail: "/Leukemian%20Detection.png",
       tags: [
         "Python",
         "TensorFlow",
