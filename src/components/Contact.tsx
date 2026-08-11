@@ -83,11 +83,20 @@ export const Contact: React.FC = () => {
               Let's Build Something Extraordinary.
             </h2>
 
-            <p className="text-sm sm:text-base text-neutral-400 leading-relaxed mb-8 max-w-lg">
+            <p className="text-sm sm:text-base text-neutral-400 leading-relaxed mb-6 max-w-lg">
               Whether you are hiring for an **AI Engineer / ML Engineer** role,
               looking to collaborate on high-performance LLM infrastructure, or
               exploring technical partnerships—my inbox is always open.
             </p>
+
+            <div className="w-full rounded-xl border border-yellow-400/20 bg-yellow-400/10 px-4 py-3 mb-6 text-sm text-yellow-100">
+              <p className="font-semibold">
+                The contact form is currently in progress.
+              </p>
+              <p className="mt-1 text-xs text-neutral-300">
+                For now, please reach out directly using the email below.
+              </p>
+            </div>
 
             {/* Email Copy Card */}
             <div className="w-full p-4 sm:p-5 rounded-2xl bg-neutral-900/90 border border-neutral-800 flex items-center justify-between gap-4 mb-8 shadow-xl">
@@ -162,7 +171,8 @@ export const Contact: React.FC = () => {
                 Send a Message
               </h3>
               <p className="text-xs text-neutral-400 mb-6 font-mono">
-                Fast responses guaranteed within 24 hours.
+                The form is still being prepared; direct email remains the best
+                way to reach out right now.
               </p>
 
               {feedbackMessage ? (
