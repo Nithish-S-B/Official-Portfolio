@@ -2,7 +2,7 @@
 
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
-import { Check, Copy, FileText, Mail, Send, Sparkles } from "lucide-react";
+import { Check, Copy, FileText, Mail, Send } from "lucide-react";
 import React, { useState } from "react";
 
 export const Contact: React.FC = () => {
@@ -175,84 +175,78 @@ export const Contact: React.FC = () => {
                 way to reach out right now.
               </p>
 
-              {feedbackMessage ? (
-                <div
-                  className={`p-6 rounded-xl border text-center space-y-2 ${
-                    feedbackMessage.type === "success"
-                      ? "bg-yellow-400/10 border-yellow-400/40"
-                      : "bg-red-500/10 border-red-500/40"
-                  }`}
-                >
-                  <Sparkles className="w-8 h-8 text-yellow-400 mx-auto animate-bounce" />
-                  <h4 className="text-sm font-bold text-white">
-                    {feedbackMessage.type === "success"
-                      ? "Message Received!"
-                      : "Submission Failed"}
-                  </h4>
-                  <p className="text-xs text-neutral-300">
-                    {feedbackMessage.text}
-                  </p>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-mono text-neutral-400 mb-1">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    placeholder="e.g. Alex Morgan"
+                    className="w-full bg-neutral-950 border border-neutral-800 focus:border-yellow-400 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-all"
+                  />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-mono text-neutral-400 mb-1">
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      placeholder="e.g. Alex Morgan"
-                      className="w-full bg-neutral-950 border border-neutral-800 focus:border-yellow-400 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-all"
-                    />
-                  </div>
 
-                  <div>
-                    <label className="block text-xs font-mono text-neutral-400 mb-1">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      placeholder="alex@company.com"
-                      className="w-full bg-neutral-950 border border-neutral-800 focus:border-yellow-400 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-all"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-xs font-mono text-neutral-400 mb-1">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    placeholder="alex@company.com"
+                    className="w-full bg-neutral-950 border border-neutral-800 focus:border-yellow-400 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-all"
+                  />
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-mono text-neutral-400 mb-1">
-                      Message / Opportunity Details
-                    </label>
-                    <textarea
-                      rows={4}
-                      required
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      placeholder="Briefly describe your role, project, or inquiry..."
-                      className="w-full bg-neutral-950 border border-neutral-800 focus:border-yellow-400 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-all"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-xs font-mono text-neutral-400 mb-1">
+                    Message / Opportunity Details
+                  </label>
+                  <textarea
+                    rows={4}
+                    required
+                    value={formData.message}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
+                    placeholder="Briefly describe your role, project, or inquiry..."
+                    className="w-full bg-neutral-950 border border-neutral-800 focus:border-yellow-400 rounded-xl px-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none transition-all"
+                  />
+                </div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3 px-6 text-xs font-semibold rounded-xl bg-yellow-400 text-black hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3 px-6 text-xs font-semibold rounded-xl bg-yellow-400 text-black hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <span>{isSubmitting ? "Sending..." : "Send Inquiry"}</span>
+                  <Send className="w-3.5 h-3.5" />
+                </button>
+
+                {feedbackMessage && (
+                  <div
+                    className={`rounded-xl border px-4 py-3 text-center ${
+                      feedbackMessage.type === "success"
+                        ? "bg-yellow-400/10 border-yellow-400/40"
+                        : "bg-red-500/10 border-red-500/40"
+                    }`}
                   >
-                    <span>{isSubmitting ? "Sending..." : "Send Inquiry"}</span>
-                    <Send className="w-3.5 h-3.5" />
-                  </button>
-                </form>
-              )}
+                    <p className="text-xs text-neutral-300">
+                      {feedbackMessage.text}
+                    </p>
+                  </div>
+                )}
+              </form>
             </div>
           </div>
         </div>
