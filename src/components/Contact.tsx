@@ -55,10 +55,7 @@ export const Contact: React.FC = () => {
     } catch (error) {
       setFeedbackMessage({
         type: "error",
-        text:
-          error instanceof Error
-            ? error.message
-            : "Unable to send message. Please try again later.",
+        text: "The contact form is currently in progress. For now, please reach out directly using the email.",
       });
     } finally {
       setIsSubmitting(false);
